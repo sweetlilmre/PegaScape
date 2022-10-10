@@ -389,7 +389,12 @@ Promise.all([dnsServerStarted, httpServerStarted]).then(() => {
 
 	console.log("Responding with address " + ipAddr);
 	console.log("Switch DNS IP: " + (argv.host || ip.address()));
-	require('./repl');
+	if (loadConfig().daemon === true) {
+		console.log("Running in daemon mode, REPL disabled");
+	}
+	else {
+		require('./repl');
+	}
 	logger = logf;
 	logf = {log: function() {}};
 
