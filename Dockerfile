@@ -4,8 +4,6 @@ LABEL authors="Peter Edwards"
 # Create app directory
 WORKDIR /app
 
-# COPY . /app/
-
 # update dependencies and install git
 RUN apk update && \
     apk add python3 && \
@@ -19,12 +17,12 @@ RUN apk update && \
 
 FROM node:16-alpine AS release
 
-# RUN npm install pm2 -g
-
 COPY --from=build /app /app
 
 WORKDIR /app
 
 EXPOSE 80
+EXPOSE 53/UDP
+
 
 ENTRYPOINT [ "node", "start.js" ]
