@@ -8,7 +8,6 @@ const fs = require('fs');
 const path = require('path');
 
 const WebSocket = require('ws');
-const History = require('repl.history');
 
 const ee = new events.EventEmitter();
 const wss = new WebSocket.Server({ port: 8100 });
@@ -158,7 +157,7 @@ const r = repl.start({
 	completer: complete
 });
 
-History(r, historyPath);
+r.setupHistory(historyPath, err => err && console.log('Repl history error:', err));
 
 // looks for autorun var [bool]
 // in config.json

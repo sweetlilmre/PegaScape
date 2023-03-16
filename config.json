@@ -5,6 +5,7 @@
   "autorunScript": true,
   "nvcore": true,
   "debug": false,
+  "daemon": false,
   "scripts": {
     "hbl": {
       "scriptPath": "autoscripts/hbl.js",
